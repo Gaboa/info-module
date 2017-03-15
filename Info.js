@@ -7,8 +7,10 @@ export default class Info {
         y = game.world.centerY,
         desktopBGScale = 1,
         desktopTableScale = 1,
+        desktopCloseButtonMargin = 50,
         mobileBGScale = 1,
-        mobileTableScale = 1
+        mobileTableScale = 1,
+        mobileCloseButtonMargin = 40,
     }) {
         this.model = model;
         this.game = game;
@@ -17,8 +19,10 @@ export default class Info {
         this.y = y;
         this.desktopBGScale = desktopBGScale;
         this.desktopTableScale = desktopTableScale;
+        this.desktopCloseButtonMargin = desktopCloseButtonMargin;
         this.mobileBGScale = mobileBGScale;
         this.mobileTableScale = mobileTableScale;
+        this.mobileCloseButtonMargin = mobileCloseButtonMargin;
 
         this.container.visible = false;
         this.container.alpha = 0;
@@ -56,7 +60,7 @@ export default class Info {
     addCloseButton() {
         this.closeButton = this.game.add.sprite(this.game.width - 170, 120, 'closeButton', null, this.container);
         this.closeButton.right = this.infoTableBg.right + 3;
-        this.closeButton.top = (this.model.desktop) ? this.infoTableBg.top + 50 : this.infoTableBg.top + 40;
+        this.closeButton.top = (this.model.desktop) ? this.infoTableBg.top + this.desktopCloseButtonMargin : this.infoTableBg.top + this.mobileCloseButtonMargin;
         this.model.el('closeButton', this.closeButton);
     }
     addControls() {
