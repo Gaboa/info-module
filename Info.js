@@ -4,13 +4,21 @@ export default class Info {
         game = model.el('game'),
         container = model.group('infoTable'),
         x = game.world.centerX,
-        y = game.world.centerY
+        y = game.world.centerY,
+        desktopBGScale = 1,
+        desktopTableScale = 1,
+        mobileBGScale = 1,
+        mobileTableScale = 1
     }) {
         this.model = model;
         this.game = game;
         this.container = container;
         this.x = x;
         this.y = y;
+        this.desktopBGScale = desktopBGScale;
+        this.desktopTableScale = desktopTableScale;
+        this.mobileBGScale = mobileBGScale;
+        this.mobileTableScale = mobileTableScale;
 
         this.container.visible = false;
         this.container.alpha = 0;
@@ -36,13 +44,13 @@ export default class Info {
     addBG() {
         this.infoTableBg = this.game.add.sprite(this.x, this.y, 'infoTableBg', null, this.container);
         this.infoTableBg.anchor.set(0.5);
-        this.infoTableBg.scale.set((this.model.desktop) ? 1 : 0.72);
+        this.infoTableBg.scale.set((this.model.desktop) ? this.desktopBGScale : this.mobileBGScale);
         this.model.el('infoTableBg', this.infoTableBg);
     }
     addTable() {
         this.infoTable = this.game.add.sprite(this.x, this.y, 'infoTable', '1_en.png', this.container);
         this.infoTable.anchor.set(0.5);
-        this.infoTable.scale.set((this.model.desktop) ? 1.3 : 1);
+        this.infoTable.scale.set((this.model.desktop) ? this.desktopTableScale : this.mobileTableScale);
         this.model.el('infoTable', this.infoTable);
     }
     addCloseButton() {
