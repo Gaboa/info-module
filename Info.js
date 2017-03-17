@@ -6,9 +6,9 @@ export default class Info {
         x = game.world.centerX,
         y = game.world.centerY,
         desktopBGScale = 1,
-        desktopTableScale = 1,
+        desktopTableScale = 1.3,
         desktopCloseButtonMargin = 50,
-        mobileBGScale = 1,
+        mobileBGScale = 0.75,
         mobileTableScale = 1,
         mobileCloseButtonMargin = 40,
     }) {
@@ -107,15 +107,17 @@ export default class Info {
     }
     addHandlers() {
         this.overlay.inputEnabled = true;
-        this.overlay.input.priorityID = 2;
+        this.overlay.input.priorityID = 11;
         this.infoTable.inputEnabled = true;
-        this.infoTable.input.priorityID = 3;
+        this.infoTable.input.priorityID = 11;
+        this.infoTableBg.inputEnabled = true;
+        this.infoTableBg.input.priorityID = 11;
         this.closeButton.inputEnabled = true;
-        this.closeButton.input.priorityID = 4;
+        this.closeButton.input.priorityID = 12;
         this.arrowRight.inputEnabled = true;
-        this.arrowRight.input.priorityID = 4;
+        this.arrowRight.input.priorityID = 12;
         this.arrowLeft.inputEnabled = true;
-        this.arrowLeft.input.priorityID = 4;
+        this.arrowLeft.input.priorityID = 12;
 
         this.infoTable.events.onInputDown.add(this.handleTouch, this);
         this.overlay.events.onInputDown.add(this.handleClose, this);
@@ -124,7 +126,9 @@ export default class Info {
         this.arrowLeft.events.onInputDown.add(this.switchLeft, this);
     }
     handleClose() {
-        if (this.model.state('isAnim:info')) return;
+        if (this.model.state('isAnim:info')) {
+            return;
+        }
 
         this.game.input.keyboard.enabled = true;
         this.model.state('infoPanelOpen', false);
