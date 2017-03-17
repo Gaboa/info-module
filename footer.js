@@ -14,33 +14,34 @@ export default class Footer {
         this.mainContainer = mainContainer;
         this.menuContainer = menuContainer;
         this.buttonY = this.game.height - 20;
-        this.footerHeight = 40;
+        this.topFooterHeight = 35;
+        this.bottomFooterHeight = 40;
     }
 
     addTopFooter(color = 0x000000, alpha = 0.6) {
         this.footerTop = this.game.add.graphics(0, 0, this.mainContainer)
             .beginFill(color, alpha).drawRect(
                 0,
-                this.game.height - (this.footerHeight + this.footerHeight),
+                this.game.height - (this.bottomFooterHeight + this.topFooterHeight),
                 this.game.width,
                 this.footerHeight
             );
 
         this.model.el('footerTop', this.footerTop);
-        this.model.data('footerTopCenterY', this.game.height - (this.footerHeight + this.footerHeight / 2));
+        this.model.data('footerTopCenterY', this.game.height - (this.bottomFooterHeight + this.topFooterHeight / 2));
     }
 
     addBottomFooter(color = 0x000000, alpha = 0.85) {
         this.footerBottom = this.game.add.graphics(0, 0, this.mainContainer)
             .beginFill(color, alpha).drawRect(
                 0,
-                this.game.height - this.footerHeight,
+                this.game.height - this.bottomFooterHeight,
                 this.game.width,
-                this.footerHeight
+                this.bottomFooterHeight
             );
 
         this.model.el('footerBottom', this.footerBottom);
-        this.model.data('footerBottomCenterY', this.game.height - (this.footerHeight / 2));
+        this.model.data('footerBottomCenterY', this.game.height - (this.bottomFooterHeight / 2));
     }
 
     addHome(x, y) {
