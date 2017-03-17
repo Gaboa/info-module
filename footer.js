@@ -21,13 +21,13 @@ export default class Footer {
         this.footerTop = this.game.add.graphics(0, 0, this.mainContainer)
             .beginFill(color, alpha).drawRect(
                 0,
-                this.game.height - (this.footerHeight * 2),
+                this.game.height - (this.footerHeight + this.footerHeight),
                 this.game.width,
                 this.footerHeight
             );
 
         this.model.el('footerTop', this.footerTop);
-        this.model.data('footerTopCenterY', this.game.height - (this.footerHeight * 2 / 2));
+        this.model.data('footerTopCenterY', this.game.height - (this.footerHeight + this.footerHeight / 2));
     }
 
     addBottomFooter(color = 0x000000, alpha = 0.85) {
@@ -40,7 +40,7 @@ export default class Footer {
             );
 
         this.model.el('footerBottom', this.footerBottom);
-        this.model.data('footerTBottomCenterY', this.game.height - (this.footerHeight / 2));
+        this.model.data('footerBottomCenterY', this.game.height - (this.footerHeight / 2));
     }
 
     addHome(x, y) {
@@ -114,9 +114,7 @@ export default class Footer {
     }
 
     addTime() {
-        this.styleDesktop = {font: '18px Helvetica, Arial', align: 'center', fill: '#fff'};
-        this.styleMobile = {font: '22px Helvetica, Arial', align: 'center', fill: '#fff'};
-        this.timeStyle = (this.model.desktop) ? this.styleDesktop : this.styleMobile;
+        this.timeStyle = {font: '22px Helvetica, Arial', align: 'center', fill: '#fff'};
         this.timeHeight = (this.model.desktop) ? this.game.height - 17 : this.game.height - 11;
         this.currentHour = new Date().getHours();
         this.currentMinutes = new Date().getMinutes();
@@ -133,7 +131,7 @@ export default class Footer {
             0,
             this.timeHeight,
             `${this.currentHour} : ${this.currentMinutes}`,
-            this.style,
+            this.timeStyle,
             this.mainContainer);
         this.footerTime.anchor.set(0.5);
         this.footerTime.x = this.game.width - this.footerTime.width;
