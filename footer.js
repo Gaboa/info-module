@@ -14,7 +14,7 @@ export default class Footer {
         this.mainContainer = mainContainer;
         this.menuContainer = menuContainer;
         this.buttonY = this.game.height - 20;
-        this.topFooterHeight = 35;
+        this.topFooterHeight = 30;
         this.bottomFooterHeight = 40;
     }
 
@@ -24,7 +24,7 @@ export default class Footer {
                 0,
                 this.game.height - (this.bottomFooterHeight + this.topFooterHeight),
                 this.game.width,
-                this.footerHeight
+                this.topFooterHeight
             );
 
         this.model.el('footerTop', this.footerTop);
