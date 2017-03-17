@@ -116,7 +116,7 @@ export default class Footer {
 
     addTime() {
         this.timeStyle = {font: '22px Helvetica, Arial', align: 'center', fill: '#fff'};
-        this.timeHeight = (this.model.desktop) ? this.game.height - 17 : this.game.height - 11;
+        this.timeHeight = this.game.height - 17;
         this.currentHour = new Date().getHours();
         this.currentMinutes = new Date().getMinutes();
 
