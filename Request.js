@@ -19,7 +19,7 @@ export let request = (() => {
                 let params = getAllUrlParams();
                 let currentMode = params.mode || mode[options];
                 let currentService = params.service || 'test';
-                serviceUrl = `https://intergameservice.bossgs.org/${currentService}/SlotService.svc`;
+                serviceUrl = `https://devgameservice.bossgs.org/${currentService}/SlotService.svc`;
                 if (params.demo === 'true') {
                     name = `${name}Demo`;
                 }
