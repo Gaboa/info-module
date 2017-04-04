@@ -19,7 +19,7 @@ export let request = (() => {
                 let params = getAllUrlParams();
                 let currentMode = params.mode || mode[options];
                 let currentService = params.service || 'test';
-                serviceUrl = `https://devgameservice.bossgs.org/${currentService}/SlotService.svc`;
+                serviceUrl = `https://devservice.bossgs.org/${currentService}/SlotService.svc`;
                 if (params.demo === 'true') {
                     name = `${name}Demo`;
                 }
@@ -32,7 +32,7 @@ export let request = (() => {
                 break;
             case 'Roll': {
                 console.log('--------------');
-                url = `${serviceUrl}/_${name}/${model.data('sessionID')}/${model.balance('betValue')}/${model.balance('coinValue') * 100}`;
+                url = `${serviceUrl}/_${name}/${model.data('sessionID')}/${model.balance('betValue')}/${model.balance('coinValue') * 100}/${model.data('lastClickedDoor')}`;
             }
                 break;
             case 'Ready': {
