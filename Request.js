@@ -18,7 +18,7 @@ export let request = (() => {
             // Авторизация
                 let params = getAllUrlParams();
                 let currentMode = params.mode || mode[options];
-                let currentService = params.service || 'test';
+                let currentService = params.service || 'backdevtest';
                 serviceUrl = `https://devservice.bossgs.org/${currentService}/SlotService.svc`;
                 if (params.demo === 'true') {
                     name = `${name}Demo`;
