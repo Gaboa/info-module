@@ -11,7 +11,7 @@ export let request = (() => {
         mode = modes;
     }
 
-    function send(name, options) {
+    function send(name, options, door = 0) {
         let url;
         switch (name) {
             case 'Initialise': {
@@ -32,7 +32,7 @@ export let request = (() => {
                 break;
             case 'Roll': {
                 console.log('--------------');
-                url = `${serviceUrl}/_${name}/${model.data('sessionID')}/${model.balance('betValue')}/${model.balance('coinValue') * 100}/${model.data('lastClickedDoor')}`;
+                url = `${serviceUrl}/_${name}/${model.data('sessionID')}/${model.balance('betValue')}/${model.balance('coinValue') * 100}/${door}`;
             }
                 break;
             case 'Ready': {
