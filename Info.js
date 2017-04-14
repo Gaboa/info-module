@@ -11,6 +11,9 @@ export default class Info {
         mobileBGScale = 0.75,
         mobileTableScale = 1,
         mobileCloseButtonMargin = 40,
+        controlsDeltaX = 50,
+        controlsDeltaY = 20,
+        hover = false
     }) {
         this.model = model;
         this.game = game;
@@ -23,6 +26,9 @@ export default class Info {
         this.mobileBGScale = mobileBGScale;
         this.mobileTableScale = mobileTableScale;
         this.mobileCloseButtonMargin = mobileCloseButtonMargin;
+        this.controlsDeltaX = controlsDeltaX;
+        this.controlsDeltaY = controlsDeltaY;
+        this.hover = hover;
 
         this.container.visible = false;
         this.container.alpha = 0;
@@ -69,8 +75,8 @@ export default class Info {
         this.addMarkers();
         this.addArrows();
 
-        this.controls.y = this.infoTableBg.bottom - this.controls.height / 2 - 20;
-        this.controls.x = this.game.width / 2 - this.controls.width / 2 + 50;
+        this.controls.x = this.game.width / 2 - this.controls.width / 2 + this.controlsDeltaX;
+        this.controls.y = this.infoTableBg.bottom - this.controls.height / 2 - this.controlsDeltaY;
 
         this.container.add(this.controls);
         this.model.group('infoControllers', this.controls);
@@ -96,11 +102,13 @@ export default class Info {
         this.model.el('infoMarkers', this.infoMarkers);
     }
     addArrows() {
-        this.arrowRight = this.game.add.sprite(this.infoMarkers[this.infoMarkers.length - 1].x + 50, 60, 'arrow', null, this.controls);
+        let sprite = (this.hover) ? 'arrow.png' : null;
+        this.arrowRight = this.game.add.sprite(this.infoMarkers[this.infoMarkers.length - 1].x + 50, 60, 'arrow', sprite, this.controls);
+        this.arrowLeft = this.game.add.sprite(this.infoMarkers[0].x - 50, 60, 'arrow', null, this.controls);
+
         this.arrowRight.anchor.set(0.5);
         this.model.el('arrowRight', this.arrowRight);
 
-        this.arrowLeft = this.game.add.sprite(this.infoMarkers[0].x - 50, 60, 'arrow', null, this.controls);
         this.arrowLeft.anchor.set(0.5);
         this.arrowLeft.scale.set(-1, 1);
         this.model.el('arrowLeft', this.arrowLeft);
@@ -124,6 +132,11 @@ export default class Info {
         this.closeButton.events.onInputDown.add(this.handleClose, this);
         this.arrowRight.events.onInputDown.add(this.switchRight, this);
         this.arrowLeft.events.onInputDown.add(this.switchLeft, this);
+
+        this.arrowRight.events.onInputOver.add(this.hoverRight, this);
+        this.arrowLeft.events.onInputOver.add(this.hoverLeft, this);
+        this.arrowRight.events.onInputOut.add(this.hoverOffRight, this);
+        this.arrowLeft.events.onInputOut.add(this.hoverOffLeft, this);
     }
     handleClose() {
         if (this.model.state('isAnim:info')) {
@@ -184,6 +197,22 @@ export default class Info {
 
         this.infoMarkers[this.counter - 1].frameName = 'marker_on.png';
         this.infoTable.frameName = `${this.counter}_en.png`;
+    }
+    hoverRight() {
+        if (!this.hover) return;
+        this.arrowRight.frameName = 'arrowOn.png';
+    }
+    hoverLeft() {
+        if (!this.hover) return;
+        this.arrowLeft.frameName = 'arrowOn.png';
+    }
+    hoverOffRight() {
+        if (!this.hover) return;
+        this.arrowRight.frameName = 'arrow.png';
+    }
+    hoverOffLeft() {
+        if (!this.hover) return;
+        this.arrowLeft.frameName = 'arrow.png';
     }
     open() {
         if (this.model.state('buttons:locked')
