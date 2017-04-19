@@ -84,7 +84,7 @@ export let controller = (() => {
         playMusic: function(music, volume = 1){
             let game = model.el('game');
             if (!model.sound(music)){
-                model.sound(music, game.add.audio(music, volume, true));
+                model.sound(music, game.add.audio(music, 0, true));
             }
 
             if (!model.state('music')) {
@@ -97,10 +97,12 @@ export let controller = (() => {
                 // currMusic.restart();
             } else {
                 if (currMusic.isDecoded) {
-                    currMusic.fadeIn(3000, true);
+                    currMusic.play()
+                    currMusic.fadeTo(3000, volume);
                 } else {
                     currMusic.onDecoded.add(() => {
-                        currMusic.fadeIn(3000, true);
+                        currMusic.play()
+                        currMusic.fadeTo(3000, volume);
                     });
                 }
             }
