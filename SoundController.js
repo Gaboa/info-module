@@ -81,10 +81,10 @@ export let controller = (() => {
 
     const music = {
 
-        playMusic: function(music){
+        playMusic: function(music, volume = 1){
             let game = model.el('game');
             if (!model.sound(music)){
-                model.sound(music, game.add.audio(music, 1, true));
+                model.sound(music, game.add.audio(music, volume, true));
             }
 
             if (!model.state('music')) {
