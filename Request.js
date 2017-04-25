@@ -1,5 +1,4 @@
 import { model } from 'modules/Model/Model';
-import { noConnect } from 'modules/Util/NoConnect';
 
 export let request = (() => {
     let serviceUrl;
