@@ -8,7 +8,7 @@ export default class Footer {
         menuContainer = model.group('footerMenu')
     }) {
         this.model = model;
-        this.reuest = request;
+        this.request = request;
         this.soundController = soundController;
         this.game = game;
         this.mainContainer = mainContainer;
@@ -202,7 +202,11 @@ export default class Footer {
         this.request.send('Logout')
             .then((response) => {
                 // Возвращаемся на предыдущую страницу
-                window.history.back();
+                if (urlParams.homeurl) {
+                    window.location.href = urlParams.homeurl;
+                } else {
+                    window.history.back();
+                }
                 console.log('Logout response:', response);
             });
     }
