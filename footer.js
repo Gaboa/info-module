@@ -203,7 +203,7 @@ export default class Footer {
             .then((response) => {
                 // Возвращаемся на предыдущую страницу
                 if (urlParams.homeurl) {
-                    window.location.href = urlParams.homeurl;
+                    window.top.location.href = urlParams.homeurl;
                 } else {
                     window.history.back();
                 }
