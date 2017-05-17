@@ -222,7 +222,7 @@ export default class Info {
 
         this.model.el('infoCounter', this.counter);
         this.model.state('infoPanelOpen', true);
-        // soundController.sound.playSound({ sound: 'buttonClick' });
+	    this.game.input.keyboard.enabled = false;
 
         this.infoMarkers.forEach((elem) => {
             elem.frameName = 'marker_off.png';
