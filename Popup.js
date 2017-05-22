@@ -8,8 +8,7 @@ export default class Popup {
 
 		this.closeEvent = this.closePopup.bind(this);
 		this.reloadEvent = this.reloadPopup.bind(this);
-
-		this.addStyles();
+		
 		this.closePopup();
 	}
 
