@@ -16,6 +16,9 @@ export let request = (() => {
             case 'Initialise': {
             // Авторизация
                 let params = getAllUrlParams();
+
+                console.log(params);
+
                 window.urlParams = params;
                 let currentMode = params.mode || mode[options];
                 let currentService = params.service || 'backdevtest';
@@ -87,6 +90,8 @@ export let request = (() => {
             // split our query string into its component parts
             let arr = queryString.split('&');
 
+            console.log('Array of params: ', arr)
+
             for (let i = 0; i < arr.length; i++) {
                 // separate the keys and the values
                 let a = arr[i].split('=');
@@ -98,8 +103,12 @@ export let request = (() => {
                     return '';
                 });
 
+                let paramValue = arr[i].slice(paramName.length + 1);
+
                 // set parameter value (use 'true' if empty)
-                let paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+                // let paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+
+                console.log('Param value: ', paramValue);
 
                 // (optional) keep case consistent
                 paramName = paramName.toLowerCase();
