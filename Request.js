@@ -21,7 +21,7 @@ export let request = (() => {
 
                 window.urlParams = params;
                 let currentMode = params.mode || mode[options];
-                let currentService = params.service || 'backdevtest';
+                let currentService = params.service || 'servicev11';
                 serviceUrl = `https://devservice.bossgs.org/${currentService}/SlotService.svc`;
                 if (params.demo === 'true') {
                     name = `${name}Demo`;
