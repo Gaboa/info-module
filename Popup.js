@@ -42,8 +42,9 @@ export default class Popup {
 	}
 
 	reloadPopup() {
-		if (urlParams.homeurl) {
-			window.top.location.href = urlParams.homeurl;
+		let url = urlParams.homeurl || urlParams.homeURL
+		if (url) {
+			window.top.location.href = url;
 		} else {
 			window.history.back();
 		}
