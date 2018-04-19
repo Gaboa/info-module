@@ -15,28 +15,28 @@ export let controller = (() => {
             }
         });
 
-        let up = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+        let up = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
         up.onUp.add(() => {
             if ( !model.state('transitionScreen') ) {
                 model.changeCoin({up: true});
             }
         });
 
-        let down = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+        let down = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
         down.onUp.add(() => {
             if ( !model.state('transitionScreen') ) {
                 model.changeCoin({down: true});
             }
         });
 
-        let right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+        let right = game.input.keyboard.addKey(Phaser.Keyboard.UP);
         right.onUp.add(() => {
             if ( !model.state('transitionScreen') ) {
                 model.changeBet({up: true});
             }
         });
 
-        let left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+        let left = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
         left.onUp.add(() => {
             if ( !model.state('transitionScreen') ) {
                 model.changeBet({down: true});

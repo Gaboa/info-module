@@ -211,11 +211,26 @@ export default class Footer {
             });
     }
 
+    startFullscreen() {
+		var element = document.querySelector('#game');
+		if (element.requestFullScreen) element.requestFullScreen();
+		else if (element.mozRequestFullScreen) element.mozRequestFullScreen();
+		else if (element.webkitRequestFullScreen) element.webkitRequestFullScreen();
+    }
+
+    cancelFullscreen () {
+		if (document.cancelFullScreen) document.cancelFullScreen();
+		else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+		else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
+    }
+
     handleFullScreen() {
-        if (this.game.scale.isFullScreen) {
-            this.game.scale.stopFullScreen();
+        if (this.model.state('fullscreen')) {
+			this.cancelFullscreen()
+			this.model.state('fullscreen', false)
         } else {
-            this.game.scale.startFullScreen();
+			this.startFullscreen()
+			this.model.state('fullscreen', true)
         }
     }
 
