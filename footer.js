@@ -201,14 +201,14 @@ export default class Footer {
         // Отправляем запрос Logout
         this.request.send('Logout')
             .then((response) => {
-                // Возвращаемся на предыдущую страницу
-                if (urlParams.homeurl) {
-                    window.top.location.href = urlParams.homeurl;
-                } else {
-                    window.history.back();
-                }
                 console.log('Logout response:', response);
             });
+		// Возвращаемся на предыдущую страницу
+		if (urlParams.homeurl) {
+			window.top.location.href = urlParams.homeurl;
+		} else {
+			window.history.back();
+		}
     }
 
     startFullscreen() {
